@@ -1,7 +1,13 @@
-function MyInput({ type, placeholder }) {
+function MyInput({ type, placeholder, value, setValue }) {
   return (
     <div class='form-group'>
-      <input type={type} className='form-control' placeholder={placeholder} />
+      <input
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        type={type}
+        className='form-control'
+        placeholder={placeholder}
+      />
     </div>
   );
 }

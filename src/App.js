@@ -1,11 +1,12 @@
 import './App.css';
-import MyInput from './components/UI/MyInput';
+
+import RegisterForm from './components/RegisterForm';
 
 function App() {
   return (
-    <div>
+    <div className='container'>
       <h2>App</h2>
-      <MyInput type='text' placeholder='Enter email' />
+      <RegisterForm />
     </div>
   );
 }
