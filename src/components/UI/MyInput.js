@@ -8,7 +8,7 @@ function MyInput({ type, placeholder, value, setValue, error }) {
         className={error ? 'form-control is-invalid' : 'form-control'}
         placeholder={placeholder}
       />
-      <div class='invalid-feedback'>{error}</div>
+      {error && <div className='invalid-feedback'>{error}</div>}
     </div>
   );
 }

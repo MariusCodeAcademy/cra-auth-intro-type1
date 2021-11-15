@@ -21,7 +21,12 @@ function RegisterForm() {
         { field: 'email', errorMsg: 'Please enter email' },
       ]);
     }
-    if (!password) return console.log('no password');
+    if (!password) {
+      return setErrors([
+        ...errors,
+        { field: 'password', errorMsg: 'Please enter password' },
+      ]);
+    }
     if (password.length <= 4) return console.log('Password must be 4 or more');
     if (password !== repeatPassword) return console.log('pass must match');
     console.log('sending form no errors');
@@ -62,6 +67,7 @@ function RegisterForm() {
         setValue={setPassword}
         type='password'
         placeholder='Create password'
+        error={findErrorByField('password')}
       />
       <MyInput
         value={repeatPassword}
