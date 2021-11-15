@@ -1,6 +1,6 @@
 function MyInput({ type, placeholder, value, setValue }) {
   return (
-    <div class='form-group'>
+    <div className='form-group'>
       <input
         value={value}
         onChange={(e) => setValue(e.target.value)}
