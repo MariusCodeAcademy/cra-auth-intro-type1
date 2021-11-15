@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import MyInput from './UI/MyInput';
 
 const backUrl = 'http://localhost:5000';
 
 function RegisterForm() {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
@@ -44,6 +46,11 @@ function RegisterForm() {
     console.log(data);
     if (data.error) {
       setErrors(data.error);
+    }
+    if (data.msg && data.msg === 'register success') {
+      console.log('register success');
+      //  redirect to login page
+      history.push('/login');
     }
   };
 
