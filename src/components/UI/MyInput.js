@@ -1,13 +1,14 @@
-function MyInput({ type, placeholder, value, setValue }) {
+function MyInput({ type, placeholder, value, setValue, error }) {
   return (
     <div className='form-group'>
       <input
         value={value}
         onChange={(e) => setValue(e.target.value)}
         type={type}
-        className='form-control'
+        className={error ? 'form-control is-invalid' : 'form-control'}
         placeholder={placeholder}
       />
+      <div class='invalid-feedback'>{error}</div>
     </div>
   );
 }

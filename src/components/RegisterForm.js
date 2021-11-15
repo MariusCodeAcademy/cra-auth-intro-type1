@@ -9,12 +9,17 @@ function RegisterForm() {
   const [repeatPassword, setRepeatPassword] = useState('');
 
   const [isFormValid, setIsFormValid] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors([]);
 
     if (!email) {
-      return console.log('no email');
+      return setErrors([
+        ...errors,
+        { field: 'email', errorMsg: 'Please enter email' },
+      ]);
     }
     if (!password) return console.log('no password');
     if (password.length <= 4) return console.log('Password must be 4 or more');
@@ -32,7 +37,16 @@ function RegisterForm() {
     });
     const data = await resp.json();
     console.log(data);
+    if (data.error) {
+      setErrors(data.error);
+    }
   };
+
+  function findErrorByField(field) {
+    // find erro by field
+    const foundErrObj = errors.find((errObj) => errObj.field === field);
+    return foundErrObj ? foundErrObj.errorMsg : null;
+  }
 
   return (
     <form onSubmit={handleSubmit} className='w-50'>
@@ -41,6 +55,7 @@ function RegisterForm() {
         setValue={setEmail}
         type='text'
         placeholder='Enter email'
+        error={findErrorByField('email')}
       />
       <MyInput
         value={password}
