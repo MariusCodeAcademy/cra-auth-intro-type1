@@ -56,6 +56,7 @@ function RegisterForm() {
 
   function findErrorByField(field) {
     // find erro by field
+    if (!Array.isArray(errors)) return;
     const foundErrObj = errors.find((errObj) => errObj.field === field);
     return foundErrObj ? foundErrObj.errorMsg : null;
   }

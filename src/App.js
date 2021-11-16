@@ -4,11 +4,15 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import ProfilePage from './pages/ProfilePage';
+import { Toaster } from 'react-hot-toast';
+import { useAuthCtx } from './store/AuthContext';
 
 function App() {
-  const currentUser = localStorage.getItem('userEmail');
+  const { userName: currentUser } = useAuthCtx();
+
   return (
     <div className='container'>
+      <Toaster />
       <Switch>
         <Route path='/register'>
           <RegisterPage />

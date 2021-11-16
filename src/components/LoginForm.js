@@ -1,10 +1,15 @@
 import MyInput from './UI/MyInput';
 import { useState } from 'react';
 import { login } from '../utils/Fetch';
+import { useAuthCtx } from '../store/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 function LoginForm() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const history = useHistory();
+  const authCtx = useAuthCtx();
+  console.log('file: LoginForm.js variable: authCtx:', authCtx);
+  const [email, setEmail] = useState('james@bond.com');
+  const [password, setPassword] = useState('123456');
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -15,8 +20,10 @@ function LoginForm() {
     if (loginRezult.msg && loginRezult.msg === 'success') {
       const { email, token } = loginRezult.data;
       // TODO: make it work with context.api
-      localStorage.setItem('userEmail', email);
-      localStorage.setItem('userToken', token);
+      authCtx.login(email, token);
+      history.replace('/profile');
+      // localStorage.setItem('userEmail', email);
+      // localStorage.setItem('userToken', token);
       // TODO: redirect to home page
     }
   };
