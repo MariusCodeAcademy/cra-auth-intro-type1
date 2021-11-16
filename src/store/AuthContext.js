@@ -27,6 +27,7 @@ function AuthProvider({ children }) {
     console.log('file: AuthContext.js variable: Logout:', userName);
     setUserName('');
     setToken(null);
+    toast.error('You have logged out');
   };
   useEffect(() => {
     console.log('file: AuthContext.js variable: UseEffect token:', token);
