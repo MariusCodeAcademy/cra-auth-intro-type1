@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useAuthCtx } from '../store/AuthContext';
 
 function HomePage() {
-  const currentUser = localStorage.getItem('userEmail');
+  const { logout, userName } = useAuthCtx();
+  const currentUser = userName;
   return (
     <main>
       <h1 className='display-1'>Welcome to our Website</h1>
@@ -13,9 +15,14 @@ function HomePage() {
       </Link>
       {/* only show when logged in */}
       {currentUser && (
-        <Link to='/profile'>
-          <button className='btn btn-outline-info'>Your page</button>
-        </Link>
+        <>
+          <Link to='/profile'>
+            <button className='btn btn-outline-info'>Your page</button>
+          </Link>
+          <Link onClick={logout} to='/'>
+            <button className='btn btn-outline-info'>Logout here</button>
+          </Link>
+        </>
       )}
     </main>
   );

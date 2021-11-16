@@ -22,8 +22,7 @@ function LoginForm() {
       // TODO: make it work with context.api
       authCtx.login(email, token);
       history.replace('/profile');
-      // localStorage.setItem('userEmail', email);
-      // localStorage.setItem('userToken', token);
+
       // TODO: redirect to home page
     }
   };
